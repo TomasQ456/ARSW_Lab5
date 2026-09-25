@@ -140,6 +140,7 @@ El proyecto quedó validado con ejecuciones reales sobre el código:
 ### Evidencia 4: aplicación funcionando
 
 ![alt text](img/image-2.png)
+
 ![alt text](img/image-3.png)
 
 ---
