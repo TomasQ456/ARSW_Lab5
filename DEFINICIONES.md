@@ -20,7 +20,7 @@ Librería de JavaScript para construir interfaces de usuario.
 - Trabaja con **componentes** reutilizables.
 - Permite crear aplicaciones dinámicas con un solo HTML (_Single Page Application_).
 
-👉 Aquí construimos los **componentes de la UI**: tablas, formularios y el lienzo (_canvas_).
+Aquí construimos los **componentes de la UI**: tablas, formularios y el lienzo (_canvas_).
 
 ---
 
@@ -32,7 +32,7 @@ Conjunto de utilidades para manejar **estado global** en aplicaciones React.
 - Usa **slices y reducers** para modificar el estado.
 - Incluye **thunks** para manejar peticiones asíncronas.
 
-👉 En este laboratorio controlamos con Redux:
+En este laboratorio controlamos con Redux:
 
 - La lista de autores y sus blueprints.
 - El blueprint actualmente abierto en el canvas.
@@ -48,7 +48,7 @@ Cliente HTTP para consumir APIs desde el frontend.
 - Permite configurar **interceptores** para agregar el token JWT a cada petición.
 - Maneja errores de forma centralizada.
 
-👉 Aquí lo usamos para conectarnos con el backend de Blueprints (Labs 3 y 4).
+Aquí lo usamos para conectarnos con el backend de Blueprints (Labs 3 y 4).
 
 ---
 
@@ -69,7 +69,7 @@ Estándar para autenticar usuarios entre cliente y servidor.
 - El cliente guarda este token (ej: en `localStorage`) y lo envía en cada petición.
 - El backend valida el token para autorizar el acceso a recursos protegidos.
 
-👉 Aquí se usa para **proteger la creación de blueprints**.
+Aquí se usa para **proteger la creación de blueprints**.
 
 ---
 
@@ -80,7 +80,7 @@ Herramienta que analiza el código en busca de errores, malas prácticas y estil
 - Detecta variables no usadas, imports incorrectos o código duplicado.
 - Garantiza consistencia entre todos los desarrolladores del equipo.
 
-👉 En este laboratorio se usa **ESLint 9 (Flat Config)** para que los estudiantes entreguen un código limpio y mantenible.
+En este laboratorio se usa **ESLint 9 (Flat Config)** para que los estudiantes entreguen un código limpio y mantenible.
 
 ---
 
@@ -91,4 +91,4 @@ Framework de pruebas unitarias y de componentes para proyectos modernos en React
 - **Vitest** ejecuta las pruebas en Node con entorno `jsdom`.
 - **Testing Library** permite renderizar componentes y simular interacciones de usuario.
 
-👉 Aquí validamos que los componentes (`Canvas`, `Form`, `Page`) funcionen correctamente.
+Aquí validamos que los componentes (`Canvas`, `Form`, `Page`) funcionen correctamente.

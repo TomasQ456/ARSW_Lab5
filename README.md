@@ -1,186 +1,150 @@
-# Lab – React Client for Blueprints (Redux + Axios + JWT)
+# Laboratorio Blueprints React
 
-> Basado en el cliente HTML/JS del repo de referencia, este laboratorio moderniza el _frontend_ con **React + Vite**, **Redux Toolkit**, **Axios** (con interceptores y JWT), **React Router** y pruebas con **Vitest + Testing Library**.
+Autores: Tomas Quiceno y Deisy Guzmán
 
-## Objetivos de aprendizaje
+## Descripción
 
-- Diseñar una SPA en React aplicando **componetización** y **Redux (reducers/slices)**.
-- Consumir APIs REST de Blueprints con **Axios** y manejar **estados de carga/errores**.
-- Integrar **autenticación JWT** con interceptores y rutas protegidas.
-- Aplicar buenas prácticas: estructura de carpetas, `.env`, linters, testing, CI.
+Este laboratorio consiste en modernizar el cliente web de Blueprints usando React, Vite, Redux Toolkit, Axios y pruebas con Vitest + Testing Library. El objetivo es consumir la API de blueprints, mostrar la información por autor, seleccionar un plano y dibujarlo en un canvas.
+
+Se incluye además una capa de servicios que puede alternar entre un mock local y la API real mediante una variable de entorno.
+
+> Referencia: [DEFINICIONES.md](./DEFINICIONES.md)
+
+---
+
+## Objetivos
+
+- Diseñar una SPA con componentes reutilizables.
+- Gestionar estado global con Redux.
+- Consumir servicios REST con Axios.
+- Implementar JWT en los interceptores del cliente.
+- Dibujar blueprints en un canvas.
+- Validar comportamiento con pruebas automatizadas.
+
+---
 
 ## Requisitos previos
 
-- Tener corriendo el backend de Blueprints de los **Labs 3 y 4** (APIs + seguridad).
-- Node.js 18+ y npm.
+- Node.js 18+
+- npm
+- Backend de Blueprints levantado (si se quiere usar la API real)
 
-Ver la especificación de glosario clave, consulta las [Definiciones del laboratorio](./DEFINICIONES.md).
+---
 
-## Endpoints esperados (ajústalos si tu backend quedo diferente)
-
-- `GET /api/blueprints` → lista general o catálogo para derivar autores.
-- `GET /api/blueprints/{author}`
-- `GET /api/blueprints/{author}/{name}`
-- `POST /api/blueprints` (requiere JWT)
-- `POST /api/auth/login` → `{ token }`
-
-Configura la URL base en `.env`.
-
-## Cómo arrancar
+## Instalación y ejecución
 
 ```bash
 npm install
 cp .env.example .env
-# edita .env con la URL del backend
 npm run dev
 ```
 
-Abre `http://localhost:5173`
+La app queda disponible en:
+
+```text
+http://localhost:5173
+```
+
+---
 
 ## Variables de entorno
 
-Crea un archivo `.env` en la raíz:
-
-```variable
-VITE_API_BASE_URL=http://localhost:8080/api
-```
-
-> **Tip:** en producción usa variables seguras o un _reverse proxy_.
-
-## Estructura
-
-```carpetas
-blueprints-react-lab/
-├─ src/
-│  ├─ components/
-│  ├─ features/blueprints/blueprintsSlice.js
-│  ├─ pages/
-│  ├─ services/apiClient.js   # axios + interceptores JWT
-│  ├─ store/index.js          # Redux Toolkit
-│  ├─ App.jsx, main.jsx, styles.css
-├─ tests/
-├─ .github/workflows/ci.yml
-├─ index.html, package.json, vite.config.js, README.md
-```
-
-## 📌 Requerimientos del laboratorio
-
-## 1. Canvas (lienzo)
-
-- Agregar un lienzo (Canvas) a la página.
-- Incluir un componente `BlueprintCanvas` con un identificador propio.
-- Definir dimensiones adecuadas (ej. `520×360`) para que no ocupe toda la pantalla pero permita dibujar los planos.
-
-## 2. Listar los planos de un autor
-
-- Permitir ingresar el nombre de un autor y consultar sus planos desde el backend (o mock).
-- Mostrar los resultados en una tabla con las siguientes columnas:
-  - Nombre del plano
-  - Número de puntos
-  - Botón `Open` para abrirlo
-
-## 3. Seleccionar un plano y graficarlo
-
-Al hacer clic en el botón `Open`, debe:
-
-- Actualizar un campo de texto con el nombre del plano actual.
-- Obtener los puntos del plano correspondiente.
-- Dibujar consecutivamente los segmentos de recta en el canvas y marcar cada punto.
-
-## 4. Servicios: `apimock` y `apiclient`
-
-- Implementar dos servicios con la misma interfaz:
-  - `apimock`: retorna datos de prueba desde memoria.
-  - `apiclient`: consume el API REST real con Axios.
-- La interfaz de ambos debe incluir los métodos:
-  - `getAll`
-  - `getByAuthor`
-  - `getByAuthorAndName`
-  - `create`
-- Habilitar el cambio entre `apimock` y `apiclient` con una sola línea de código:
-  - Definir un módulo `blueprintsService.js` que importe uno u otro según una variable en `.env`.
-  - Ejemplo en `.env` (Vite):
+Archivo `.env`:
 
 ```env
+VITE_API_BASE_URL=http://localhost:8080/api
 VITE_USE_MOCK=true
 ```
 
-- `VITE_USE_MOCK=true` usa el mock.
-- `VITE_USE_MOCK=false` usa el API real.
-
-## 5. Interfaz con React
-
-- El nombre del plano actual debe mostrarse en el DOM como parte del estado global (Redux).
-- Evitar manipular directamente el DOM; usar componentes y props/estado.
-
-## 6. Estilos
-
-- Agregar estilos para mejorar la presentación.
-- Se puede usar Bootstrap u otro framework CSS.
-- Ajustar la tabla, botones y tarjetas para acercarse al mock de referencia.
-
-## 7. Pruebas unitarias
-
-- Agregar pruebas con Vitest + Testing Library para validar:
-  - Render del canvas.
-  - Envío de formularios.
-  - Interacciones básicas con Redux (por ejemplo: dispatch de `fetchByAuthor`).
+- `VITE_USE_MOCK=true` usa el mock local.
+- `VITE_USE_MOCK=false` usa la API real.
 
 ---
 
-### Notas rápidas y recomendaciones
+## Funcionalidades implementadas
 
-- Para el canvas en tests con jsdom: agregar un mock de `HTMLCanvasElement.prototype.getContext` en `tests/setup.js`.
-- Para usar `@testing-library/jest-dom` con Vitest: en `tests/setup.js` importar `import '@testing-library/jest-dom'` y asegurarse de que Vitest provea el global `expect` (configurar `vitest.config.js` con la opción `test: { globals: true, setupFiles: './tests/setup.js' }`).
-- Para la conmutación de servicios en Vite, usar `import.meta.env.VITE_USE_MOCK` para leer la variable en tiempo de ejecución.
-
-## 📌 Recomendaciones y actividades sugeridas para el exito del laboratorio
-
-1. **Redux avanzado**
-   - [ ] Agrega estados `loading/error` por _thunk_ y muéstralos en la UI.
-   - [ ] Implementa _memo selectors_ para derivar el top-5 de blueprints por cantidad de puntos.
-2. **Rutas protegidas**
-   - [ ] Crea un componente `<PrivateRoute>` y protege la creación/edición.
-3. **CRUD completo**
-   - [ ] Implementa `PUT /api/blueprints/{author}/{name}` y `DELETE ...` en el slice y en la UI.
-   - [ ] Optimistic updates (revertir si falla).
-4. **Dibujo interactivo**
-   - [ ] Reemplaza el `svg` por un lienzo donde el usuario haga _click_ para agregar puntos.
-   - [ ] Botón “Guardar” que envíe el blueprint.
-5. **Errores y _Retry_**
-   - [ ] Si `GET` falla, muestra un banner y un botón **Reintentar** que dispare el thunk.
-6. **Testing**
-   - [ ] Pruebas de `blueprintsSlice` (reducers puros).
-   - [ ] Pruebas de componentes con Testing Library (render, interacción).
-7. **CI/Lint/Format**
-   - [ ] Activa **GitHub Actions** (workflow incluido) → lint + test + build.
-8. **Docker (opcional)**
-   - [ ] Crea `Dockerfile` (+ `compose`) para front + backend.
-
-## Criterios de evaluación
-
-- Funcionalidad y cobertura de casos (30%)
-- Calidad de código y arquitectura (Redux, componentes, servicios) (25%)
-- Manejo de estado, errores, UX (15%)
-- Pruebas automatizadas (15%)
-- Seguridad (JWT/Interceptores/Rutas protegidas) (10%)
-- CI/Lint/Format (5%)
-
-## Scripts
-
-- `npm run dev` – servidor de desarrollo Vite
-- `npm run build` – build de producción
-- `npm run preview` – previsualizar build
-- `npm run lint` – ESLint
-- `npm run format` – Prettier
-- `npm test` – Vitest
+- Búsqueda de blueprints por autor
+- Tabla con nombre del blueprint, cantidad de puntos y botón Open
+- Dibujo de puntos y segmentos en el canvas
+- Estado global con Redux para blueprint actual
+- Servicio mock y servicio real con la misma interfaz
+- Formulario para crear blueprints
+- JWT con interceptor HTTP
+- Pruebas unitarias con Vitest
 
 ---
 
-### Extensiones propuestas del reto
+## Estructura del proyecto
 
-- **Redux Toolkit Query** para _caching_ de requests.
-- **MSW** para _mocks_ sin backend.
-- **Dark mode** y diseño responsive.
+```text
+src/
+  components/
+  features/
+  pages/
+  services/
+  store/
+  App.jsx
+  main.jsx
+  styles.css
 
-> Este proyecto es un punto de partida para que tus estudiantes evolucionen el cliente clásico de Blueprints a una SPA moderna con prácticas de la industria.
+tests/
+  BlueprintCanvas.test.jsx
+  BlueprintForm.test.jsx
+  BlueprintsPage.test.jsx
+  blueprintsSlice.test.jsx
+  setup.js
+```
+
+---
+
+## Scripts disponibles
+
+```bash
+npm run dev
+npm run build
+npm run preview
+npm run lint
+npm test
+```
+
+---
+
+## Resultado de validación
+
+El proyecto quedó validado con ejecuciones reales sobre el código:
+
+- `npm test` → pruebas pasando
+- `npm run build` → compilación exitosa
+- `npm run lint` → sin errores de lint
+
+---
+
+## Evidencias del laboratorio
+
+
+### Evidencia 1: terminal - pruebas
+
+- Captura de pantalla de `npm test`
+![alt text](img/image.png)
+
+### Evidencia 2: terminal - compilación
+
+- Captura de pantalla de `npm run build`
+![alt text](img/image1.png)
+
+### Evidencia 3: terminal - lint
+
+- Captura de pantalla de `npm run lint`
+![alt text](img/image-1.png)
+
+### Evidencia 4: aplicación funcionando
+
+![alt text](image-2.png)
+- Captura de la interfaz en navegador
+- Debe verse la tabla de blueprints, el canvas y el blueprint seleccionado
+
+---
+
+## Observación final
+
+La solución quedó funcional y validada. Las capturas anteriores son la evidencia documental que debe entregarse junto con el repositorio para respaldar la entrega del laboratorio.
