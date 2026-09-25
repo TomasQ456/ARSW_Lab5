@@ -1,19 +1,19 @@
-# 📖 Definiciones base
+# Definiciones base
 
 ## Regresar a [README](./README.md)
 
-## 🔹 Vite
+## Vite
 
 Herramienta moderna para desarrollar aplicaciones frontend.
 
 - Sirve como **servidor de desarrollo rápido** y como **empaquetador** para producción.
 - Permite recargar la aplicación en caliente (_Hot Module Replacement_) sin reiniciar toda la página.
 
-👉 En este laboratorio lo usamos para **montar la SPA en React** y empaquetar el proyecto final.
+En este laboratorio lo usamos para **montar la SPA en React** y empaquetar el proyecto final.
 
 ---
 
-## 🔹 React
+## React
 
 Librería de JavaScript para construir interfaces de usuario.
 
@@ -24,7 +24,7 @@ Aquí construimos los **componentes de la UI**: tablas, formularios y el lienzo 
 
 ---
 
-## 🔹 Redux Toolkit
+## Redux Toolkit
 
 Conjunto de utilidades para manejar **estado global** en aplicaciones React.
 
@@ -40,7 +40,7 @@ En este laboratorio controlamos con Redux:
 
 ---
 
-## 🔹 Axios
+## Axios
 
 Cliente HTTP para consumir APIs desde el frontend.
 
@@ -52,7 +52,7 @@ Aquí lo usamos para conectarnos con el backend de Blueprints (Labs 3 y 4).
 
 ---
 
-## 🔹 Canvas
+## Canvas
 
 Elemento HTML `<canvas>` que permite dibujar gráficos en 2D/3D con JavaScript.
 
@@ -73,7 +73,7 @@ Aquí se usa para **proteger la creación de blueprints**.
 
 ---
 
-## 🔹 Linter (ESLint)
+## Linter (ESLint)
 
 Herramienta que analiza el código en busca de errores, malas prácticas y estilo inconsistente.
 
@@ -84,7 +84,7 @@ En este laboratorio se usa **ESLint 9 (Flat Config)** para que los estudiantes e
 
 ---
 
-## 🔹 Vitest + Testing Library
+## Vitest + Testing Library
 
 Framework de pruebas unitarias y de componentes para proyectos modernos en React.
 

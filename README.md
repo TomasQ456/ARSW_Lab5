@@ -139,9 +139,8 @@ El proyecto quedó validado con ejecuciones reales sobre el código:
 
 ### Evidencia 4: aplicación funcionando
 
-![alt text](image-2.png)
-- Captura de la interfaz en navegador
-- Debe verse la tabla de blueprints, el canvas y el blueprint seleccionado
+![alt text](img/image-2.png)
+![alt text](img/image-3.png)
 
 ---
 
