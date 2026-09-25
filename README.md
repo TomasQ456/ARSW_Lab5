@@ -143,8 +143,3 @@ El proyecto quedó validado con ejecuciones reales sobre el código:
 
 ![alt text](img/image-3.png)
 
----
-
-## Observación final
-
-La solución quedó funcional y validada. Las capturas anteriores son la evidencia documental que debe entregarse junto con el repositorio para respaldar la entrega del laboratorio.
